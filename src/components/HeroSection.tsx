@@ -1,12 +1,29 @@
 import { Briefcase, Code } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const HeroSection = () => {
+  const [displayText, setDisplayText] = useState("");
+  const fullText = "Yash Chavda";
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    if (index < fullText.length) {
+      const timeout = setTimeout(() => {
+        setDisplayText((prev) => prev + fullText[index]);
+        setIndex((prev) => prev + 1);
+      }, 150); // Adjust typing speed here (milliseconds)
+
+      return () => clearTimeout(timeout);
+    }
+  }, [index]);
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-primary-light to-white">
       <div className="container mx-auto px-6 py-20 animate-fade-up">
         <div className="text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-secondary-dark mb-6">
-            Software QA Engineer
+            {displayText}
+            <span className="animate-pulse">|</span>
           </h1>
           <p className="text-xl md:text-2xl text-secondary mb-8">
             Ensuring software quality through automated testing and continuous integration
