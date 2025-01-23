@@ -11,11 +11,18 @@ const HeroSection = () => {
       const timeout = setTimeout(() => {
         setDisplayText((prev) => prev + fullText[index]);
         setIndex((prev) => prev + 1);
-      }, 150); // Adjust typing speed here (milliseconds)
+      }, 150);
 
       return () => clearTimeout(timeout);
     }
   }, [index]);
+
+  const scrollToProjects = () => {
+    const projectsSection = document.getElementById('projects');
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-secondary-dark via-primary-dark to-secondary-dark">
@@ -29,7 +36,10 @@ const HeroSection = () => {
             Ensuring software quality through automated testing and continuous integration
           </p>
           <div className="flex justify-center gap-4">
-            <button className="flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors">
+            <button 
+              onClick={scrollToProjects}
+              className="flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors"
+            >
               <Briefcase size={20} />
               View Projects
             </button>
