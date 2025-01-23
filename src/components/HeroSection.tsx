@@ -25,7 +25,7 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-secondary-dark via-primary-dark to-secondary-dark">
+    <div className="min-h-screen pt-16 flex items-center justify-center bg-gradient-to-br from-secondary-dark via-primary-dark to-secondary-dark">
       <div className="container mx-auto px-6 py-20 animate-fade-up">
         <div className="text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
