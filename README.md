@@ -36,6 +36,16 @@ npm i
 npm run dev
 ```
 
+## Running Cypress tests
+
+To execute the end-to-end tests headlessly and generate a Mochawesome HTML report, run:
+
+```sh
+npm run test
+```
+
+The report will be written to `cypress/reports/index.html`.
+
 **Edit a file directly in GitHub**
 
 - Navigate to the desired file(s).
