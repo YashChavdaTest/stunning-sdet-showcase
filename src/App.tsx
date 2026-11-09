@@ -1,38 +1,267 @@
-import { useState } from "react";
-import { ArrowDownRight, ArrowUpRight, Check, Github, Linkedin, Menu, X, ShieldCheck, Workflow, Gauge } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ArrowDown, ArrowRight, ArrowUpRight, Check, Github, Linkedin, Menu, X } from "lucide-react";
 
-const projects = [
-  { id:"01", category:"AUTOMATION ARCHITECTURE", title:"Engineering a 4,000+ test automation suite", summary:"Led a six-person offshore team building and maintaining Selenium C# automation with xUnit BDD and Jenkins. The work went beyond scripting: architecture, reviews, flaky-test investigation, infrastructure coordination and team enablement.", challenge:"Keep a large regression suite repeatable and maintainable as the product and engineering team evolve.", contribution:["Reusable automation structure and team code reviews","Jenkins execution and failure triage","Mentoring, framework ownership and flakiness management"], tags:["Selenium","C#","xUnit BDD","Jenkins"], result:"4,000+ automated tests · team of 6" },
-  { id:"02", category:"AI-NATIVE QA", title:"Connecting requirements to automated evidence", summary:"Designed agent-assisted QA workflows that connect tickets, generated test cases, execution and traceability updates using MCP integrations and test management tools.", challenge:"Reduce the manual handoffs between requirements, test design, automation and reporting without sacrificing reviewability.", contribution:["Ticket-to-test generation and evaluation","Agent-assisted automation with Playwright and PyTest","Coverage mapping to Jira/Xray and Azure Test Plans"], tags:["Playwright","PyTest","MCP","Jira / Xray","Azure DevOps"], result:"Requirements → test cases → execution → traceability" },
-  { id:"03", category:"PERFORMANCE ENGINEERING", title:"Performance testing as a delivery capability", summary:"Built a k6 testing framework integrated into Azure DevOps, with Grafana dashboards and Azure resource-utilization metrics to connect load behaviour to infrastructure signals.", challenge:"Make load tests repeatable, understandable and useful to engineers rather than one-off reports.", contribution:["Scenario-based k6 load tests","CI execution via Azure DevOps","Grafana reporting and Azure resource metrics"], tags:["k6","Grafana","Azure DevOps","Azure"], result:"Repeatable CI load tests and observable system behaviour" },
-  { id:"04", category:"FRAMEWORK MODERNIZATION", title:"Moving automation from Cypress to Playwright", summary:"Worked on the migration to a reusable Playwright foundation, including component reuse, reporting, continuous integration and test-plan coverage alignment.", challenge:"Make framework modernization improve maintainability, not merely replace one syntax with another.", contribution:["Reusable page and component abstractions","Pipeline integration and reporting","Azure Test Plans traceability"], tags:["Cypress","Playwright","TypeScript","Azure Test Plans"], result:"A maintainable foundation for modern test automation" }
+const chapters = [
+  { id: "intro", label: "Introduction" },
+  { id: "experience", label: "Experience" },
+  { id: "expertise", label: "Specialties" },
+  { id: "projects", label: "Projects" },
+  { id: "connect", label: "Connect" },
 ];
-const strengths = [
-  {icon:ShieldCheck, title:"Automation architecture", text:"Risk-based coverage, maintainable frameworks, reliable execution and actionable failures."},
-  {icon:Workflow, title:"AI-assisted quality", text:"MCP-based workflows, RAG evaluation, agent-assisted test generation and execution."},
-  {icon:Gauge, title:"Performance & delivery", text:"k6, Grafana, Azure Pipelines, Jenkins, CI quality gates and observable feedback."},
+
+const experience = [
+  {
+    index: "01",
+    eyebrow: "AUTOMATION AT SCALE",
+    title: "Building automation that lasts",
+    text: "Led a six-person QA team working with a Selenium C# and xUnit BDD suite of more than 4,000 automated tests, with Jenkins execution and ongoing reliability work.",
+    tech: "Selenium · C# · xUnit BDD · Jenkins",
+  },
+  {
+    index: "02",
+    eyebrow: "AI-NATIVE QUALITY ENGINEERING",
+    title: "Turning requirements into evidence",
+    text: "Built agent-assisted workflows connecting tickets, generated test cases, Playwright execution, and traceability through MCP, Jira/Xray and Azure Test Plans.",
+    tech: "Python · Playwright · MCP · Azure DevOps",
+  },
+  {
+    index: "03",
+    eyebrow: "PERFORMANCE & DELIVERY",
+    title: "Making performance part of CI",
+    text: "Created a k6 performance-testing framework integrated with Azure DevOps and Grafana, including visibility into Azure resource utilization.",
+    tech: "k6 · Grafana · Azure Pipelines",
+  },
 ];
-const stack = [
-  ["AUTOMATION","Playwright · PyTest · Selenium · Cypress · Appium"],
-  ["LANGUAGES","Python · TypeScript / JavaScript · C# · Java"],
-  ["CI & DELIVERY","Azure DevOps · Jenkins · GitHub Actions · BrowserStack"],
-  ["QUALITY & AI","Jira / Xray · Azure Test Plans · MCP · RAG · k6 · Grafana"],
+
+const specialties = [
+  {
+    no: "01",
+    title: "Test architecture",
+    description: "Designing reusable frameworks, reducing flaky tests and making automated results trustworthy.",
+    tags: ["Playwright", "PyTest", "Selenium", "Appium"],
+  },
+  {
+    no: "02",
+    title: "Agentic & AI testing",
+    description: "Applying agents, MCP and evaluation techniques to real test-development and RAG workflows.",
+    tags: ["Python", "MCP", "RAG", "AI evaluation"],
+  },
+  {
+    no: "03",
+    title: "CI/CD & observability",
+    description: "Embedding automation and performance feedback into the engineering delivery cycle.",
+    tags: ["Azure DevOps", "Jenkins", "k6", "Grafana"],
+  },
+  {
+    no: "04",
+    title: "Engineering leadership",
+    description: "Leading teams, reviewing automation code, mentoring engineers and improving delivery practices.",
+    tags: ["Architecture", "Code reviews", "Mentoring"],
+  },
 ];
-function App(){
-  const [active,setActive]=useState<number|null>(0);
-  const [menu,setMenu]=useState(false);
-  return <div className="site" id="top">
-    <header className="header"><a href="#top" className="logo" onClick={()=>setMenu(false)}>Y<span>.</span>C <small>QUALITY ENGINEERING<br/>/ ARCHITECTURE</small></a><button aria-label="Toggle navigation" aria-expanded={menu} className="mobile-menu" onClick={()=>setMenu(!menu)}>{menu?<X/>:<Menu/>}</button><nav className={menu?"nav open":"nav"}><a onClick={()=>setMenu(false)} href="#work">Selected work</a><a onClick={()=>setMenu(false)} href="#expertise">Expertise</a><a onClick={()=>setMenu(false)} href="#about">About</a><a onClick={()=>setMenu(false)} href="#notes">Notes</a><a onClick={()=>setMenu(false)} href="#contact" className="nav-action">Let's connect <ArrowUpRight size={16}/></a></nav></header>
-    <main>
-      <section className="hero wrap"><div className="topline"><span className="status">YASH CHAVDA / PORTFOLIO</span></div><div className="hero-layout"><div><div className="kicker">YASH CHAVDA <b/> QA ARCHITECT · AUTOMATION ENGINEER · VADODARA, INDIA</div><h1>I build the systems <em>behind</em> software confidence<span className="green">.</span></h1><p className="lead">I design test systems, build automation frameworks and make release decisions easier to trust. My work spans large-scale test infrastructure, CI/CD, performance engineering and practical AI-assisted QA.</p><div className="actions"><a className="button" href="#work">Explore selected work <ArrowDownRight size={19}/></a><a href="#contact" className="underlink">Get in touch <ArrowUpRight size={18}/></a></div></div></div></section>
-      <section className="intro-strip wrap" aria-label="Engineering focus"><span>THE WORK IN A SENTENCE</span><p>Architecture over scripts. Useful signal over vanity coverage. Engineering judgment over process for its own sake.</p></section>
-      <section id="work" className="section wrap"><p className="kicker">02 / SELECTED WORK</p><div className="section-head"><h2>Engineering work,<br/><span>not just tools.</span></h2><p>Technical challenges I've worked on — the problems, engineering decisions and systems behind delivery.</p></div><div className="cases">{projects.map((p,i)=><article className={active===i?"case selected":"case"} key={p.id}><button className="case-button" onClick={()=>setActive(active===i?null:i)} aria-expanded={active===i}><span className="case-no">{p.id} / 04</span><div><span className="kicker">{p.category}</span><h3>{p.title}</h3><p>{p.summary}</p></div><span className="case-arrow">{active===i?<X size={19}/>:<ArrowUpRight size={19}/>}</span></button>{active===i&&<div className="case-expanded"><div><span className="meta">ENGINEERING CHALLENGE</span><p>{p.challenge}</p><span className="meta">SCOPE / OUTCOME</span><p className="highlight">{p.result}</p></div><div><span className="meta">MY CONTRIBUTION</span><ul>{p.contribution.map(c=><li key={c}><Check size={15}/>{c}</li>)}</ul><div className="tags">{p.tags.map(t=><span key={t}>{t}</span>)}</div></div></div>}</article>)}</div><p className="footnote">Case studies summarize hands-on work without exposing client-sensitive implementation details.</p></section>
-      <section id="expertise" className="expertise"><div className="wrap section"><p className="kicker">03 / CORE EXPERTISE</p><div className="section-head"><h2>Quality is a<br/><span>systems problem.</span></h2><p>I work where engineering architecture, product risk and release confidence intersect.</p></div><div className="strengths">{strengths.map((s,i)=><div key={s.title}><span className="kicker">0{i+1}</span><s.icon size={22}/><h3>{s.title}</h3><p>{s.text}</p></div>)}</div><div className="stack-heading"><span className="kicker">TECHNOLOGY LANDSCAPE</span><span>THE TOOLS FOLLOW THE PROBLEM</span></div><div className="stack">{stack.map(s=><div key={s[0]}><h4>{s[0]}</h4><p>{s[1]}</p></div>)}</div></div></section>
-      <section id="about" className="about-section"><div className="wrap about-layout"><div className="about-intro"><p className="kicker">04 / ABOUT</p><h2>Engineer first.<br/><em>QA by discipline.</em></h2><p>I started in software testing and grew into designing automation systems and leading quality engineering work. I enjoy the parts of QA that require engineering: understanding a system, building infrastructure around it, and giving teams better information about risk.</p><p>I've worked across healthcare applications, web and mobile automation, CI/CD, performance testing and RAG-based systems. More recently, I've been building AI-assisted workflows that connect requirements, test execution and test management.</p><a className="underlink" href="https://github.com/YashChavdaTest" target="_blank" rel="noreferrer">Explore my GitHub <ArrowUpRight size={17}/></a></div><div className="career"><div className="career-head"><span>ENGINEERING EXPERIENCE</span><span>SELECTED CHAPTERS</span></div><div className="career-row"><span>01</span><div><h3>Automation at scale</h3><p>Led a six-engineer offshore QA team on a large Selenium C# and xUnit BDD automation effort, with Jenkins integration and a suite of more than 4,000 tests.</p></div></div><div className="career-row"><span>02</span><div><h3>Frameworks and delivery systems</h3><p>Designed reusable automation components, modernized Cypress coverage with Playwright, and integrated test execution and reporting into Azure pipelines.</p></div></div><div className="career-row"><span>03</span><div><h3>AI-era quality engineering</h3><p>Worked on RAG evaluation and built agentic QA workflows using Python, Playwright and MCP to connect delivery artifacts with executable evidence.</p></div></div></div></div></section>
-      <section id="philosophy" className="section wrap philosophy"><div><p className="kicker">05 / HOW I THINK</p><h2>Coverage is a number.<br/><em>Confidence</em> is engineered.</h2><p>The goal isn't simply getting tests to pass. It's knowing whether the result is trustworthy, whether a failure is actionable, and whether the team can deliver faster without quietly accepting more risk.</p></div><div className="principles"><div><span>01</span><section><h3>Design for maintainability</h3><p>Reusable abstractions, readable tests and patterns that survive product changes.</p></section></div><div><span>02</span><section><h3>Automate the feedback loop</h3><p>Connect requirements, test generation, execution, evidence and reporting.</p></section></div><div><span>03</span><section><h3>Use AI deliberately</h3><p>AI accelerates quality engineering, while evaluation keeps its outputs accountable.</p></section></div></div></section>
-      <section id="notes" className="notes-section"><div className="wrap section"><p className="kicker">06 / FIELD NOTES</p><div className="section-head"><h2>Ideas I'm <span>working through.</span></h2><p>Questions from day-to-day quality engineering. These are areas of practice and exploration, not claims of published research.</p></div><div className="note-grid"><article><span>01 / TEST STRATEGY</span><h3>90% coverage. Zero confidence.</h3><p>Why a passing suite can still leave a team unsure what to release — and how to improve the signal instead of adding more tests.</p></article><article><span>02 / AI ASSISTED QA</span><h3>Agents are useful. Evidence matters more.</h3><p>How ticket-to-test workflows can accelerate execution while maintaining traceability, review and honest reporting.</p></article><article><span>03 / ENGINEERING PRACTICE</span><h3>A framework is a product.</h3><p>Architecture, ownership, observability and maintenance determine whether automation keeps helping a team six months later.</p></article></div></div></section>
-      <section id="contact" className="contact"><div className="wrap"><p className="kicker">07 / CONNECT</p><h2>Let's build something<br/><em>that holds up.</em></h2><p>I enjoy conversations about automation architecture, AI evaluation, engineering leadership and building practical quality systems.</p><div className="actions"><a className="contact-button" href="https://www.linkedin.com/in/yashkumar-chavda/" target="_blank" rel="noreferrer">Connect on LinkedIn <Linkedin size={19}/><ArrowUpRight size={19}/></a><a className="contact-button outline" href="https://github.com/YashChavdaTest" target="_blank" rel="noreferrer">GitHub profile <Github size={19}/><ArrowUpRight size={19}/></a></div></div></section>
-    </main><footer className="footer wrap"><span>© {new Date().getFullYear()} YASH CHAVDA</span><span>BUILT WITH INTENTION. HOSTED ON GITHUB PAGES.</span><a href="#top">BACK TO TOP ↑</a></footer>
-  </div>;
+
+const personalProjects = [
+  {
+    no: "01",
+    monogram: "PP",
+    title: "ProjectPocket",
+    category: "NATIVE iOS APP",
+    description: "A local-first personal project manager for tasks, budgets, expenses, photos and focus time — built with SwiftUI and SwiftData.",
+    stack: "SwiftUI / SwiftData / iOS",
+    status: "Personal build",
+  },
+  {
+    no: "02",
+    monogram: "TB",
+    title: "TestBrain",
+    category: "QA PRODUCT EXPERIMENT",
+    description: "An exploration of modular, AI-assisted software testing with a web application and supporting engineering components.",
+    stack: "React / Testing / AI",
+    status: "Experiment",
+  },
+  {
+    no: "03",
+    monogram: "WA",
+    title: "WinOverATS",
+    category: "CAREER SOFTWARE",
+    description: "A resume-tailoring workspace focused on verified experience, job-specific versions and reviewable AI suggestions.",
+    stack: "Next.js / TypeScript / Supabase",
+    status: "In development",
+  },
+];
+
+function App() {
+  const [active, setActive] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const elements = Array.from(document.querySelectorAll<HTMLElement>("[data-chapter]"));
+    if (!("IntersectionObserver" in window)) return;
+    const ratios = new Map<Element, number>();
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        ratios.set(entry.target, entry.isIntersecting ? entry.intersectionRatio : 0);
+        if (entry.isIntersecting) entry.target.classList.add("is-visible");
+      });
+      let best = 0;
+      let maxRatio = 0;
+      elements.forEach((element, index) => {
+        const ratio = ratios.get(element) ?? 0;
+        if (ratio > maxRatio) { maxRatio = ratio; best = index; }
+      });
+      if (maxRatio > 0) setActive(best);
+    }, { threshold: [0, 0.15, 0.3, 0.45, 0.6, 0.8] });
+    elements.forEach((element) => observer.observe(element));
+    document.documentElement.classList.add("motion-ready");
+    return () => {
+      observer.disconnect();
+      document.documentElement.classList.remove("motion-ready");
+    };
+  }, []);
+
+  const navigate = () => setMenuOpen(false);
+
+  return (
+    <div className="portfolio">
+      <header className="site-header">
+        <a href="#intro" className="wordmark" onClick={navigate} aria-label="Yash Chavda — back to introduction">
+          Yash Chavda<span className="wordmark-dot">.</span>
+        </a>
+        <nav className={menuOpen ? "main-nav is-open" : "main-nav"} aria-label="Main navigation">
+          {chapters.map((chapter, index) => (
+            <a key={chapter.id} href={`#${chapter.id}`} onClick={navigate} className={active === index ? "nav-link is-active" : "nav-link"} aria-current={active === index ? "location" : undefined}>
+              {chapter.label}
+            </a>
+          ))}
+        </nav>
+        <div className="header-end">
+          <span className="header-counter" aria-label={`Section ${active + 1} of 5`}>0{active + 1} <span>/</span> 05</span>
+          <button className="mobile-menu" type="button" aria-label={menuOpen ? "Close navigation" : "Open navigation"} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
+            {menuOpen ? <X size={23} /> : <Menu size={23} />}
+          </button>
+        </div>
+      </header>
+
+      <nav className="chapter-rail" aria-label="Chapter navigation">
+        {chapters.map((chapter, index) => (
+          <a href={`#${chapter.id}`} key={chapter.id} className={active === index ? "rail-link is-active" : "rail-link"} aria-label={`Go to ${chapter.label}`} aria-current={active === index ? "location" : undefined}>
+            <span />
+          </a>
+        ))}
+      </nav>
+
+      <main>
+        <section id="intro" data-chapter="0" className="chapter chapter-intro">
+          <div className="shell chapter-inner intro-layout">
+            <div className="intro-main">
+              <p className="overline"><span className="overline-mark" /> LEAD QA · TEST AUTOMATION ARCHITECT</p>
+              <h1>I'm Yash.<br />I engineer <span>confidence.</span></h1>
+              <p className="intro-description">I design automation systems, build reliable delivery pipelines and apply AI to make software quality more effective. Almost a decade of hands-on engineering — from writing tests to leading the systems behind them.</p>
+              <div className="intro-actions">
+                <a href="#experience" className="primary-action">Explore my work <ArrowRight size={18} /></a>
+                <a href="#connect" className="quiet-action">Get in touch <ArrowUpRight size={17} /></a>
+              </div>
+            </div>
+            <div className="intro-aside">
+              <div className="aside-top">AN ENGINEERING MINDSET</div>
+              <p>Quality isn't the number of tests you run. It's how clearly you understand the risk before you ship.</p>
+              <div className="aside-bottom"><span>ARCHITECTURE</span><span>·</span><span>AUTOMATION</span><span>·</span><span>AI</span></div>
+            </div>
+            <a href="#experience" className="next-hint">SCROLL TO EXPLORE <ArrowDown size={16} /></a>
+          </div>
+        </section>
+
+        <section id="experience" data-chapter="1" className="chapter chapter-experience">
+          <div className="shell chapter-inner split-layout">
+            <div className="chapter-lead">
+              <p className="section-number">01 / PROFESSIONAL WORK</p>
+              <h2>What I've<br /><em>worked on.</em></h2>
+              <p>My experience is built around solving engineering problems, not collecting tools. These are three areas where I've spent real time building and leading.</p>
+              <span className="subtle-rule" />
+              <p className="aside-caption">ALSO: CYPRESS → PLAYWRIGHT MODERNIZATION · RAG TESTING · MOBILE AUTOMATION</p>
+            </div>
+            <div className="experience-list">
+              {experience.map((item) => (
+                <article key={item.index} className="experience-item">
+                  <span className="item-count">{item.index}</span>
+                  <div>
+                    <span className="item-category">{item.eyebrow}</span>
+                    <h3>{item.title}</h3>
+                    <p>{item.text}</p>
+                    <div className="item-tech">{item.tech}</div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="expertise" data-chapter="2" className="chapter chapter-expertise">
+          <div className="shell chapter-inner">
+            <div className="chapter-heading">
+              <div>
+                <p className="section-number">02 / SPECIAL SKILLS</p>
+                <h2>How I bring<br /><em>value to a team.</em></h2>
+              </div>
+              <p>Deep engineering knowledge, practical automation and the judgment to know where it matters.</p>
+            </div>
+            <div className="specialty-grid">
+              {specialties.map((skill) => (
+                <article key={skill.no} className="specialty">
+                  <span className="item-count">{skill.no}</span>
+                  <h3>{skill.title}</h3>
+                  <p>{skill.description}</p>
+                  <div className="tag-list">{skill.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="projects" data-chapter="3" className="chapter chapter-projects">
+          <div className="shell chapter-inner">
+            <div className="chapter-heading">
+              <div>
+                <p className="section-number">03 / PERSONAL PROJECTS</p>
+                <h2>What I build<br /><em>for myself.</em></h2>
+              </div>
+              <p>Outside client delivery, I explore ideas by making products. A few projects from my own repositories.</p>
+            </div>
+            <div className="projects-grid">
+              {personalProjects.map((project) => (
+                <article key={project.no} className="project-card">
+                  <div className="project-top"><span className="project-monogram">{project.monogram}</span><span className="project-number">{project.no} / 03</span></div>
+                  <p className="project-category">{project.category}</p>
+                  <h3>{project.title}</h3>
+                  <p className="project-description">{project.description}</p>
+                  <div className="project-meta"><span>{project.stack}</span><span>{project.status}</span></div>
+                </article>
+              ))}
+            </div>
+            <p className="projects-footnote">These projects are currently in private repositories; the summaries describe the work without pretending they are public demos.</p>
+          </div>
+        </section>
+
+        <section id="connect" data-chapter="4" className="chapter chapter-connect">
+          <div className="shell chapter-inner contact-layout">
+            <div className="contact-content">
+              <p className="section-number">04 / LET'S CONNECT</p>
+              <h2>Good engineering<br />starts with a <em>conversation.</em></h2>
+              <p>If you're building a testing platform, modernizing automation, evaluating AI systems or growing an engineering team, I'd enjoy talking.</p>
+              <div className="contact-links">
+                <a href="https://www.linkedin.com/in/yashkumar-chavda/" target="_blank" rel="noopener noreferrer">LinkedIn <Linkedin size={18} /><ArrowUpRight size={18} /></a>
+                <a href="https://github.com/YashChavdaTest" target="_blank" rel="noopener noreferrer">GitHub <Github size={18} /><ArrowUpRight size={18} /></a>
+              </div>
+            </div>
+            <footer className="site-footer">
+              <span>© {new Date().getFullYear()} Yash Chavda</span>
+              <span>Made to be read, not just scrolled.</span>
+              <a href="#intro">Back to the beginning ↑</a>
+            </footer>
+          </div>
+        </section>
+      </main>
+    </div>
+  );
 }
 export default App;
