@@ -3,10 +3,9 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 
-// GitHub Pages serves this project at /stunning-sdet-showcase/.
-// Use "/" locally so the Vite development server continues to work normally.
+// This is a GitHub Pages user site (yashchavdatest.github.io), served at the root URL.
 export default defineConfig(({ mode }) => ({
-  base: mode === "production" ? "/stunning-sdet-showcase/" : "/",
+  base: "/",
   server: {
     host: "::",
     port: 8080,
