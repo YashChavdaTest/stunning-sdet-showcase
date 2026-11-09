@@ -1,24 +1,35 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
+import { useState } from "react";
+import { ArrowDownRight, ArrowUpRight, Check, Github, Linkedin, Menu, X, Terminal, ShieldCheck, Workflow, Gauge } from "lucide-react";
 
-const queryClient = new QueryClient();
-
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter basename={import.meta.env.BASE_URL}>
-        <Routes>
-          <Route path="/" element={<Index />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
-
+const projects = [
+  { id:"01", category:"AUTOMATION ARCHITECTURE", title:"Engineering a 4,000+ test automation suite", summary:"Led a six-person offshore team building and maintaining Selenium C# automation with xUnit BDD and Jenkins. The work went beyond scripting: architecture, reviews, flaky-test investigation, infrastructure coordination and team enablement.", challenge:"Keep a large regression suite repeatable and maintainable as the product and engineering team evolve.", contribution:["Reusable automation structure and team code reviews","Jenkins execution and failure triage","Mentoring, framework ownership and flakiness management"], tags:["Selenium","C#","xUnit BDD","Jenkins"], result:"4,000+ automated tests · team of 6" },
+  { id:"02", category:"AI-NATIVE QA", title:"Connecting requirements to automated evidence", summary:"Designed agent-assisted QA workflows that connect tickets, generated test cases, execution and traceability updates using MCP integrations and test management tools.", challenge:"Reduce the manual handoffs between requirements, test design, automation and reporting without sacrificing reviewability.", contribution:["Ticket-to-test generation and evaluation","Agent-assisted automation with Playwright and PyTest","Coverage mapping to Jira/Xray and Azure Test Plans"], tags:["Playwright","PyTest","MCP","Jira / Xray","Azure DevOps"], result:"Requirements → test cases → execution → traceability" },
+  { id:"03", category:"PERFORMANCE ENGINEERING", title:"Performance testing as a delivery capability", summary:"Built a k6 testing framework integrated into Azure DevOps, with Grafana dashboards and Azure resource-utilization metrics to connect load behaviour to infrastructure signals.", challenge:"Make load tests repeatable, understandable and useful to engineers rather than one-off reports.", contribution:["Scenario-based k6 load tests","CI execution via Azure DevOps","Grafana reporting and Azure resource metrics"], tags:["k6","Grafana","Azure DevOps","Azure"], result:"Repeatable CI load tests and observable system behaviour" },
+  { id:"04", category:"FRAMEWORK MODERNIZATION", title:"Moving automation from Cypress to Playwright", summary:"Worked on the migration to a reusable Playwright foundation, including component reuse, reporting, continuous integration and test-plan coverage alignment.", challenge:"Make framework modernization improve maintainability, not merely replace one syntax with another.", contribution:["Reusable page and component abstractions","Pipeline integration and reporting","Azure Test Plans traceability"], tags:["Cypress","Playwright","TypeScript","Azure Test Plans"], result:"A maintainable foundation for modern test automation" }
+];
+const strengths = [
+  {icon:ShieldCheck, title:"Automation architecture", text:"Risk-based coverage, maintainable frameworks, reliable execution and actionable failures."},
+  {icon:Workflow, title:"AI-assisted quality", text:"MCP-based workflows, RAG evaluation, agent-assisted test generation and execution."},
+  {icon:Gauge, title:"Performance & delivery", text:"k6, Grafana, Azure Pipelines, Jenkins, CI quality gates and observable feedback."},
+];
+const stack = [
+  ["AUTOMATION","Playwright · PyTest · Selenium · Cypress · Appium"],
+  ["LANGUAGES","Python · TypeScript / JavaScript · C# · Java"],
+  ["CI & DELIVERY","Azure DevOps · Jenkins · GitHub Actions · BrowserStack"],
+  ["QUALITY & AI","Jira / Xray · Azure Test Plans · MCP · RAG · k6 · Grafana"],
+];
+function App(){
+  const [active,setActive]=useState<number|null>(0);
+  const [menu,setMenu]=useState(false);
+  return <div className="site" id="top">
+    <header className="header"><a href="#top" className="logo" onClick={()=>setMenu(false)}>Y<span>.</span>C <small>QUALITY ENGINEERING<br/>/ ARCHITECTURE</small></a><button aria-label="Toggle navigation" aria-expanded={menu} className="mobile-menu" onClick={()=>setMenu(!menu)}>{menu?<X/>:<Menu/>}</button><nav className={menu?"nav open":"nav"}><a onClick={()=>setMenu(false)} href="#work">Selected work</a><a onClick={()=>setMenu(false)} href="#expertise">Expertise</a><a onClick={()=>setMenu(false)} href="#philosophy">Perspective</a><a onClick={()=>setMenu(false)} href="#contact" className="nav-action">Let's connect <ArrowUpRight size={16}/></a></nav></header>
+    <main>
+      <section className="hero wrap"><div className="topline"><span className="status"><i/> ENGINEERING PORTFOLIO / 2026</span><span>01 — INTRODUCTION</span></div><div className="hero-grid"><div><div className="kicker">YASH CHAVDA <b/> QA ARCHITECT · AUTOMATION ENGINEER</div><h1>I build the systems <em>behind</em> software confidence<span className="green">.</span></h1><p className="lead">Nearly a decade in quality engineering — architecting automation, scaling test infrastructure, embedding quality into delivery, and exploring what AI changes about testing.</p><div className="actions"><a className="button" href="#work">Explore selected work <ArrowDownRight size={19}/></a><a href="#contact" className="underlink">Get in touch <ArrowUpRight size={18}/></a></div></div><aside className="terminal"><div className="terminal-title"><span><i/> QUALITY ENGINEERING SYSTEM</span><span>LIVE / 01</span></div><div className="terminal-inner"><div className="terminal-tab"><Terminal size={16}/> quality-pipeline.ts <span>•••</span></div><div className="code"><div><label>01</label><b>const</b> quality = <b>await</b> pipeline(&#123;</div><div><label>02</label>&nbsp; requirements: <em>"traceable"</em>,</div><div><label>03</label>&nbsp; automation: <em>"scalable"</em>,</div><div><label>04</label>&nbsp; feedback: <em>"continuous"</em>,</div><div><label>05</label>&nbsp; ai: <em>"practical"</em></div><div><label>06</label>&#125;);</div></div><div className="pipeline"><span><Check size={13}/> REQUIREMENTS</span><strong>→</strong><span><Check size={13}/> TESTS</span><strong>→</strong><span><Check size={13}/> SIGNAL</span></div></div><div className="terminal-bottom">DESIGN FOR SIGNAL, NOT JUST COVERAGE. <span>↗</span></div></aside></div><div className="stats"><div><strong>4,000<span>+</span></strong><small>AUTOMATED TESTS<br/>IN A LARGE-SCALE SUITE</small></div><div><strong>06</strong><small>ENGINEERS LED<br/>ON AN OFFSHORE TEAM</small></div><div><strong>10<span>~</span></strong><small>YEARS OF HANDS-ON<br/>ENGINEERING EXPERIENCE</small></div><a href="#work">SCROLL TO EXPLORE <ArrowDownRight size={20}/></a></div></section>
+      <section id="work" className="section wrap"><p className="kicker">02 / SELECTED WORK</p><div className="section-head"><h2>Engineering work,<br/><span>not just tools.</span></h2><p>Technical challenges I've worked on — the problems, engineering decisions and systems behind delivery.</p></div><div className="cases">{projects.map((p,i)=><article className={active===i?"case selected":"case"} key={p.id}><button className="case-button" onClick={()=>setActive(active===i?null:i)} aria-expanded={active===i}><span className="case-no">{p.id} / 04</span><div><span className="kicker">{p.category}</span><h3>{p.title}</h3><p>{p.summary}</p></div><span className="case-arrow">{active===i?<X size={19}/>:<ArrowUpRight size={19}/>}</span></button>{active===i&&<div className="case-expanded"><div><span className="meta">ENGINEERING CHALLENGE</span><p>{p.challenge}</p><span className="meta">SCOPE / OUTCOME</span><p className="highlight">{p.result}</p></div><div><span className="meta">MY CONTRIBUTION</span><ul>{p.contribution.map(c=><li key={c}><Check size={15}/>{c}</li>)}</ul><div className="tags">{p.tags.map(t=><span key={t}>{t}</span>)}</div></div></div>}</article>)}</div><p className="footnote">Case studies summarize hands-on work without exposing client-sensitive implementation details.</p></section>
+      <section id="expertise" className="expertise"><div className="wrap section"><p className="kicker">03 / CORE EXPERTISE</p><div className="section-head"><h2>Quality is a<br/><span>systems problem.</span></h2><p>I work where engineering architecture, product risk and release confidence intersect.</p></div><div className="strengths">{strengths.map((s,i)=><div key={s.title}><span className="kicker">0{i+1}</span><s.icon size={22}/><h3>{s.title}</h3><p>{s.text}</p></div>)}</div><div className="stack-heading"><span className="kicker">TECHNOLOGY LANDSCAPE</span><span>THE TOOLS FOLLOW THE PROBLEM</span></div><div className="stack">{stack.map(s=><div key={s[0]}><h4>{s[0]}</h4><p>{s[1]}</p></div>)}</div></div></section>
+      <section id="philosophy" className="section wrap philosophy"><div><p className="kicker">04 / HOW I THINK</p><h2>Coverage is a number.<br/><em>Confidence</em> is engineered.</h2><p>The goal isn't simply getting tests to pass. It's knowing whether the result is trustworthy, whether a failure is actionable, and whether the team can deliver faster without quietly accepting more risk.</p></div><div className="principles"><div><span>01</span><section><h3>Design for maintainability</h3><p>Reusable abstractions, readable tests and patterns that survive product changes.</p></section></div><div><span>02</span><section><h3>Automate the feedback loop</h3><p>Connect requirements, test generation, execution, evidence and reporting.</p></section></div><div><span>03</span><section><h3>Use AI deliberately</h3><p>AI accelerates quality engineering, while evaluation keeps its outputs accountable.</p></section></div></div></section>
+      <section id="contact" className="contact"><div className="wrap"><p className="kicker">05 / CONNECT</p><h2>Let's build something<br/><em>that holds up.</em></h2><p>Interested in discussing quality architecture, agentic AI testing, automation systems or engineering leadership?</p><div className="actions"><a className="contact-button" href="https://www.linkedin.com/in/yashkumar-chavda/" target="_blank" rel="noreferrer">Connect on LinkedIn <Linkedin size={19}/><ArrowUpRight size={19}/></a><a className="contact-button outline" href="https://github.com/YashChavdaTest" target="_blank" rel="noreferrer">GitHub profile <Github size={19}/><ArrowUpRight size={19}/></a></div></div></section>
+    </main><footer className="footer wrap"><span>© {new Date().getFullYear()} YASH CHAVDA</span><span>BUILT WITH INTENTION. HOSTED ON GITHUB PAGES.</span><a href="#top">BACK TO TOP ↑</a></footer>
+  </div>;
+}
 export default App;
