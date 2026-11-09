@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ArrowDown, ArrowRight, ArrowUpRight, Check, Github, Linkedin, Menu, X } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUpRight, Github, Linkedin, Menu, X } from "lucide-react";
 
 const chapters = [
   { id: "intro", label: "Introduction" },
