@@ -23,3 +23,6 @@ cypress/reports
 *.njsproj
 *.sln
 *.sw?
+
+# Astro generated files
+.astro/
