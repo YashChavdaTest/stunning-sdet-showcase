@@ -219,3 +219,12 @@ h1,h2,h3{letter-spacing:0;line-height:.98}.script{font-family:var(--font-script)
 .contact-footer{margin-top:30px}
 @media(max-width:700px){.footer-nav{flex-direction:column;gap:12px}.footer-nav-links{gap:12px 20px}}
 
+
+.education{background:var(--gray);min-height:calc(100svh - 76px);display:flex;align-items:center;padding-block:clamp(48px,7vh,80px)}
+.education>.wrap{width:min(1380px,calc(100% - 10vw))}
+.education .section-top{margin-bottom:clamp(30px,4vh,50px)}
+.education-grid{display:grid;grid-template-columns:1fr 1fr;gap:8%;align-items:center}
+.education .credentials{width:100%}
+.work-page .extras-grid{grid-template-columns:1fr;max-width:800px}
+@media(max-width:850px){.education>.wrap{width:calc(100% - 40px)}}
+@media(max-width:700px){.education{padding-block:60px}.education-grid{grid-template-columns:1fr;gap:30px}}
