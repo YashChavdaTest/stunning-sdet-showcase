@@ -255,3 +255,45 @@ h1,h2,h3{letter-spacing:0;line-height:.98}.script{font-family:var(--font-script)
 @media(max-width:500px){.certification-grid{grid-template-columns:1fr}.cert-mark{width:64px;height:64px}}
 .cert-mark.cert-scrum,.cert-mark.cert-istqb-issuer{width:100px}
 @media(max-width:500px){.cert-mark.cert-scrum,.cert-mark.cert-istqb-issuer{width:90px}}
+
+/* Career timeline links and the long-form experience journal. */
+.job-link{display:block;color:inherit;text-decoration:none;transition:background-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.job-link:hover,.job-link:focus-visible{background:var(--paper);box-shadow:0 0 0 10px var(--paper);transform:translateY(-4px)}
+.job-read{display:inline-block;color:var(--red);font:400 15px var(--font-display);letter-spacing:.08em;margin-top:5px}
+@media(prefers-reduced-motion:reduce){.job-link:hover,.job-link:focus-visible{transform:none}}
+.experience-intro{background:var(--teal);color:var(--paper);min-height:calc(100svh - 76px);display:flex;align-items:center;padding:clamp(55px,8vh,90px) 0}
+.experience-intro .section-top{margin-bottom:clamp(40px,7vh,80px)}
+.experience-intro h1{font-size:clamp(78px,10vw,150px);margin-bottom:28px}
+.experience-intro .red{color:var(--yellow)}
+.experience-intro .section-lead{max-width:680px;margin-bottom:35px}
+.experience-chapter{min-height:calc(100svh - 76px);padding:clamp(45px,6vh,75px) 0;display:flex;align-items:center}
+.experience-chapter:nth-of-type(even){background:var(--gray)}
+.experience-chapter:nth-of-type(odd){background:var(--paper)}
+.chapter-top{display:flex;justify-content:space-between;gap:20px;font:400 15px var(--font-display);letter-spacing:.1em;border-bottom:1px solid;padding-bottom:18px;margin-bottom:clamp(35px,6vh,65px)}
+.chapter-layout{display:grid;grid-template-columns:1fr 1fr;gap:10%;align-items:center}
+.chapter-main h2{text-transform:uppercase;font-size:clamp(60px,7vw,105px);max-width:650px}
+.chapter-company{color:var(--teal);font:400 26px var(--font-display);letter-spacing:.06em;margin:0 0 25px}
+.chapter-intro{font-size:clamp(17px,1.5vw,22px);line-height:1.6;max-width:600px}
+.chapter-aside{position:relative;overflow:hidden;border:1px solid var(--ink);background:var(--yellow);padding:32px;min-height:300px;display:flex;flex-direction:column;justify-content:flex-end}
+.chapter-2 .chapter-aside{background:var(--teal);color:var(--paper)}
+.chapter-3 .chapter-aside{background:#f5dfb5}
+.chapter-4 .chapter-aside{background:var(--red);color:var(--paper)}
+.chapter-giant{position:absolute;right:25px;top:-25px;font:400 clamp(130px,15vw,210px)/1 var(--font-display);opacity:.16;pointer-events:none}
+.chapter-aside-label{font:400 15px var(--font-display);letter-spacing:.1em;position:relative}
+.chapter-aside ul{list-style:none;padding:0;margin:22px 0;position:relative;display:flex;flex-wrap:wrap;gap:9px}
+.chapter-aside li{font:400 18px var(--font-display);border:1px solid currentColor;padding:7px 12px}
+.chapter-aside p{position:relative;font-size:14px;margin:0;max-width:390px}
+.experience-chapter .section-next{margin-top:30px}
+@media(prefers-reduced-motion:no-preference){html:has(.experience-page){scroll-behavior:smooth}}
+@media(max-width:700px){.experience-intro,.experience-chapter{padding:60px 0}.chapter-layout{grid-template-columns:1fr;gap:25px}.chapter-aside{min-height:240px;padding:24px}.chapter-main h2{font-size:clamp(52px,11vw,72px)}.experience-intro h1{font-size:clamp(70px,13vw,110px)}}
+.chapter-top{position:relative}
+.chapter-progress{position:absolute;bottom:-2px;left:0;width:100%;height:3px;background:var(--red);transform-origin:left}
+.chapter-details{padding-left:20px;margin:20px 0 0;max-width:650px;font-size:15px;line-height:1.55}
+.chapter-details li{margin-bottom:10px}
+.chapter-details li::marker{color:var(--red)}
+.experience-chapter{overflow:clip}
+.chapter-main h1{text-transform:uppercase;font-size:clamp(60px,7vw,105px);max-width:650px;margin-bottom:24px}
+.experience-page-links{display:flex;flex-wrap:wrap;justify-content:space-between;gap:15px;margin-top:35px;font:400 18px var(--font-display);letter-spacing:.06em}
+.experience-page-links a{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:5px}
+.experience-page-links a:hover{color:var(--red)}
+@media(max-width:700px){.chapter-main h1{font-size:clamp(52px,11vw,72px)}.experience-page-links{flex-direction:column;align-items:flex-start}}

@@ -1,0 +1,29 @@
+---
+import '../../styles/global.css';
+import Header from '../../components/Header.astro';
+import ContactFooter from '../../components/ContactFooter.astro';
+import { chapters } from '../../data/experience';
+import '@fontsource/bebas-neue/latin-400.css';
+import '@fontsource/caveat/latin-400.css';
+import '@fontsource/poppins/latin-400.css';
+import '@fontsource/poppins/latin-500.css';
+import '@fontsource/poppins/latin-600.css';
+export function getStaticPaths() { return chapters.map((chapter, index) => ({ params: { id: chapter.id }, props: { chapter, index } })); }
+const { chapter, index } = Astro.props;
+const next = chapters[index + 1];
+---
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" type="image/png" href="/favicon.png"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="description" content={`Yash Chavda’s experience as ${chapter.title} at ${chapter.company}.`}/><meta name="theme-color" content="#f8f0e2"/><title>{chapter.title} — Yash Chavda</title></head><body class="experience-page"><a class="skip" href="#main">Skip to content</a><Header current="experience" /><main id="main"><section class:list={['experience-chapter', `chapter-${index+1}`]}><div class="wrap"><div class="chapter-top"><span>CAREER JOURNEY / {chapter.number}</span><span>{chapter.date}</span><span class="chapter-progress" aria-hidden="true"></span></div><div class="chapter-layout"><div class="chapter-main"><p class="script">chapter {chapter.number}</p><h1>{chapter.title}<span class="red">.</span></h1><p class="chapter-company">{chapter.company}</p><p class="chapter-intro">{chapter.intro}</p><ul class="chapter-details">{chapter.details.map(detail => <li>{detail}</li>)}</ul></div><div class="chapter-aside"><span class="chapter-giant" aria-hidden="true">{chapter.number}</span><span class="chapter-aside-label">THE WORK / {chapter.date}</span><ul>{chapter.focus.map(item => <li>{item}</li>)}</ul><p>{chapter.note}</p></div></div><div class="experience-page-links"><a href="/#experience">← BACK TO EXPERIENCE</a>{next ? <a href={`/experience/${next.id}/`}>NEXT ROLE: {next.company} ↗</a> : <a href="/work/">EXPLORE PROJECTS ↗</a>}</div><a class="section-next" href="#contact" aria-label="Continue to contact"><span aria-hidden="true">↓</span></a></div></section><ContactFooter backHref="#main" /></main><script>
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
+const media = gsap.matchMedia();
+media.add('(prefers-reduced-motion: no-preference)', () => {
+  gsap.utils.toArray<HTMLElement>('.experience-chapter').forEach(section => {
+    gsap.fromTo(section.querySelector('.chapter-progress'), { scaleX: 0 }, { scaleX: 1, duration: 1, ease: 'power2.out', scrollTrigger: { trigger: section, start: 'top 75%', once: true } });
+    gsap.fromTo(section.querySelector('.chapter-aside'), { y: 22 }, { y: -22, ease: 'none', scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom top', scrub: true } });
+  });
+  gsap.utils.toArray<HTMLElement>('.chapter-giant').forEach(el => {
+    gsap.fromTo(el, { y: 24, rotation: -4 }, { y: -24, rotation: 4, ease: 'none', scrollTrigger: { trigger: el.closest('.experience-chapter'), start: 'top bottom', end: 'bottom top', scrub: true } });
+  });
+});
+</script></body></html>
