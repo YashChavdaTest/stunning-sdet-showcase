@@ -228,3 +228,30 @@ h1,h2,h3{letter-spacing:0;line-height:.98}.script{font-family:var(--font-script)
 .work-page .extras-grid{grid-template-columns:1fr;max-width:800px}
 @media(max-width:850px){.education>.wrap{width:calc(100% - 40px)}}
 @media(max-width:700px){.education{padding-block:60px}.education-grid{grid-template-columns:1fr;gap:30px}}
+
+/* A compact credentials shelf complements the personal introduction. */
+.certifications{border-top:1px solid var(--ink);margin-top:clamp(28px,4vh,45px);padding-top:20px}
+.certifications-heading{display:flex;justify-content:space-between;align-items:baseline;gap:15px;margin-bottom:14px}
+.certifications-heading h3{font-size:28px;margin:0}
+.certifications-heading>span,.certifications-more{font:400 13px var(--font-display);letter-spacing:.08em}
+.certification-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.certification{display:flex;align-items:center;gap:12px;background:var(--paper);border:1px solid var(--ink);padding:12px;min-width:0}
+.cert-mark{flex:none;display:grid;place-items:center;width:57px;height:57px;border:1px solid var(--ink);background:var(--teal);color:var(--paper);font:400 17px var(--font-display);letter-spacing:.03em}
+.cert-claude{display:flex;justify-content:center;gap:2px;background:var(--yellow);color:var(--ink);font:400 17px var(--font-body)}
+.cert-claude span{font:600 9px var(--font-body);letter-spacing:-.04em}
+.certification h4{font:400 18px/1.05 var(--font-display);margin:0 0 4px}
+.certification p{font:400 11px/1.4 var(--font-body);margin:0}
+.certifications-more{margin:12px 0 0;color:var(--teal)}
+@media(max-width:1000px){.certification-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:500px){.certification-grid{grid-template-columns:1fr}.certification{padding:10px}.cert-mark{width:48px;height:48px}.certifications-heading>span{font-size:11px}}
+@media(min-width:701px){.about-section .identity{width:min(100%,320px);padding:16px}.about-section .identity-inner{padding:20px}.about-section .monogram{width:105px;height:105px;font-size:50px}.about-section .identity-line{margin:18px 0}.about-section .identity strong{font-size:36px}.about-section .section-top{margin-bottom:30px}.about-section .certifications{margin-top:24px}.about-section .section-next{margin-top:20px}}
+
+/* Official certification and issuer artwork, kept readable at every size. */
+.certification-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.cert-mark{width:76px;height:76px;background:white;border:0;padding:3px}
+.cert-mark img{display:block;width:100%;height:100%;object-fit:contain}
+.cert-scrum img{padding:4px}
+@media(max-width:1000px){.certification-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:500px){.certification-grid{grid-template-columns:1fr}.cert-mark{width:64px;height:64px}}
+.cert-mark.cert-scrum,.cert-mark.cert-istqb-issuer{width:100px}
+@media(max-width:500px){.cert-mark.cert-scrum,.cert-mark.cert-istqb-issuer{width:90px}}
