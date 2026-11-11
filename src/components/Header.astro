@@ -8,11 +8,17 @@ const links = [
 ];
 ---
 <header class="nav"><a class="brand" href="/#top" aria-label="Yash Chavda, Senior Test Automation Engineer, home"><span class="brand-full"><span class="brand-name">Yash Chavda<span class="brand-dot">.</span></span><small>Senior Test Automation Engineer</small></span><span class="brand-short" aria-hidden="true">YC<span class="brand-dot">.</span></span></a>
-<nav class="desktop-nav" aria-label="Main navigation">{links.map(link => <a href={link.href} aria-current={link.key === current ? 'page' : undefined}>{link.label}</a>)}<span class="nav-unavailable">Blogs <small>soon</small></span><span class="nav-unavailable">Download résumé <small>soon</small></span><a href="/#contact" class="nav-contact">Let’s connect ↗</a></nav>
-<details class="mobile-menu"><summary>Menu <span aria-hidden="true">☰</span></summary><nav aria-label="Mobile navigation">{links.map(link => <a href={link.href} aria-current={link.key === current ? 'page' : undefined}>{link.label}</a>)}<span class="nav-unavailable">Blogs <small>coming soon</small></span><span class="nav-unavailable">Download résumé <small>coming soon</small></span><a href="/#contact" class="nav-contact">Let’s connect ↗</a></nav></details>
+<nav class="desktop-nav" aria-label="Main navigation">{links.map(link => <a href={link.href} aria-current={link.key === current ? 'page' : undefined}>{link.label}</a>)}<span class="nav-unavailable">Blogs <small>soon</small></span><span class="nav-unavailable">Résumé <small>soon</small></span><a href="#contact" class="nav-contact">Let’s connect ↗</a></nav>
+<details class="mobile-menu"><summary>Menu <span aria-hidden="true">☰</span></summary><nav aria-label="Mobile navigation">{links.map(link => <a href={link.href} aria-current={link.key === current ? 'page' : undefined}>{link.label}</a>)}<span class="nav-unavailable">Blogs <small>coming soon</small></span><span class="nav-unavailable">Résumé <small>coming soon</small></span><a href="#contact" class="nav-contact">Let’s connect ↗</a></nav></details>
 </header>
 <script>
   document.querySelectorAll<HTMLDetailsElement>('.mobile-menu').forEach((menu) => {
+    menu.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && menu.open) {
+        menu.open = false;
+        menu.querySelector('summary')?.focus();
+      }
+    });
     menu.addEventListener('click', (event) => {
       if ((event.target as Element).closest('a')) menu.open = false;
     });

@@ -297,3 +297,5 @@ h1,h2,h3{letter-spacing:0;line-height:.98}.script{font-family:var(--font-script)
 .experience-page-links a{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:5px}
 .experience-page-links a:hover{color:var(--red)}
 @media(max-width:700px){.chapter-main h1{font-size:clamp(52px,11vw,72px)}.experience-page-links{flex-direction:column;align-items:flex-start}}
+
+.extras h1{font-size:clamp(58px,7vw,108px);margin:0 0 24px}
